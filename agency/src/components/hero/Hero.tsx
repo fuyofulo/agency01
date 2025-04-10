@@ -1,9 +1,4 @@
-import {
-  Bot,
-  PhoneCall,
-  Code,
-  LucideIcon,
-} from "lucide-react";
+import { Bot, PhoneCall, Code, LucideIcon } from "lucide-react";
 
 interface Feature {
   text: string;
@@ -49,7 +44,7 @@ export const Hero = () => {
       <h1 className="text-5xl md:text-8xl tracking-widest mb-4">
         Company Name
       </h1>
-      <h2 className="text-4xl md:text-5xl text-rose-500 mb-8 tracking-widest font-light">
+      <h2 className="text-4xl md:text-5xl text-rose-500 mb-8 tracking-widest font-light text-center w-full">
         Automate Customer Support with AI
       </h2>
 
