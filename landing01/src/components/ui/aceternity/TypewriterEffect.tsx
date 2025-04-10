@@ -52,10 +52,7 @@ export const TypewriterEffect = ({
               <motion.span
                 initial={{}}
                 key={`char-${index}`}
-                className={cn(
-                  `dark:text-teal-500 text-pink-300 opacity-0 hidden`,
-                  word.className
-                )}
+                className={cn(`text-inherit opacity-0 hidden`, word.className)}
               >
                 {char}
               </motion.span>
@@ -71,7 +68,7 @@ export const TypewriterEffect = ({
   return (
     <span
       className={cn(
-        "text-base sm:text-xl md:text-3xl lg:text-7xl font-bricolage font-bold",
+        "inline-flex items-center font-bricolage font-bold",
         className
       )}
     >
@@ -85,7 +82,7 @@ export const TypewriterEffect = ({
           repeatType: "reverse",
         }}
         className={cn(
-          "inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-slate-400",
+          "inline-block rounded-sm w-[4px] h-8 sm:h-10 md:h-12 lg:h-16 bg-sky-400",
           cursorClassName
         )}
       ></motion.span>

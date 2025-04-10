@@ -1,6 +1,13 @@
 "use client";
-import { ExpandableCardDemo } from "@/components/ui/aceternity/ExpandableCard";
+import { lazy, Suspense } from "react";
 import { darkGrayTheme } from "./FAQThemes";
+
+// Lazy load ExpandableCardDemo for better performance
+const ExpandableCardDemo = lazy(() =>
+  import("@/components/ui/aceternity/ExpandableCard").then((mod) => ({
+    default: mod.ExpandableCardDemo,
+  }))
+);
 
 export default function FAQ() {
   return (
@@ -15,7 +22,15 @@ export default function FAQ() {
         </p>
       </div>
       <div className="w-full max-w-4xl">
-        <ExpandableCardDemo theme={darkGrayTheme} />
+        <Suspense
+          fallback={
+            <div className="p-6 bg-slate-800 rounded-xl text-center text-white">
+              Loading FAQ...
+            </div>
+          }
+        >
+          <ExpandableCardDemo theme={darkGrayTheme} />
+        </Suspense>
       </div>
     </div>
   );

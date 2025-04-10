@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useId, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
 
 // Theme interface for centralizing all colors
@@ -8,7 +7,6 @@ interface ServiceCardTheme {
   // Card colors
   cardBackground: string;
   cardBorder: string;
-  cardHoverScale: number;
 
   // Text colors
   titleColor: string;
@@ -34,7 +32,6 @@ const defaultTheme: ServiceCardTheme = {
   // Card colors
   cardBackground: "bg-gray-600",
   cardBorder: "border border-gray-900 hover:border-black border-2",
-  cardHoverScale: 1.05,
 
   // Text colors
   titleColor: "text-white",
@@ -84,9 +81,21 @@ export function ServiceExpandableCard({
     }
 
     if (active && typeof active === "object") {
+      // Lock scrolling on body when card is open
       document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.top = `-${window.scrollY}px`;
     } else {
-      document.body.style.overflow = "auto";
+      // Restore scrolling when card is closed
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+      document.body.style.top = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
     }
 
     window.addEventListener("keydown", onKeyDown);
@@ -99,105 +108,87 @@ export function ServiceExpandableCard({
 
   return (
     <>
-      <AnimatePresence>
-        {active && typeof active === "object" && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className={`fixed inset-0 ${theme.backdropEffect} h-full w-full z-10`}
-          />
-        )}
-      </AnimatePresence>
-      <AnimatePresence mode="wait">
-        {active && typeof active === "object" ? (
-          <div className="fixed inset-0 grid place-items-center z-[100]">
-            <motion.button
-              key={`close-button-${id}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
-              onClick={() => setActive(null)}
-            >
-              <CloseIcon />
-            </motion.button>
-            <motion.div
-              key={`expanded-card-${id}`}
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.8 }}
-              transition={{ duration: 0.3 }}
-              ref={ref}
-              className={`w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col ${theme.expandedCardBackground} ${theme.expandedCardBorder} sm:rounded-3xl overflow-hidden`}
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <motion.h3
-                      className={`font-extrabold text-2xl ${theme.titleColor} mb-4`}
-                    >
-                      {active.title}
-                    </motion.h3>
-                    <motion.p className={`${theme.contentTextColor} mb-6`}>
-                      {active.description}
-                    </motion.p>
-                  </div>
+      {active && typeof active === "object" && (
+        <div
+          className={`fixed inset-0 ${theme.backdropEffect} h-full w-full z-[9000] transition-opacity duration-200 ease-in-out`}
+          onClick={() => setActive(null)}
+        />
+      )}
 
-                  <motion.button
-                    onClick={() => setActive(null)}
-                    className={`px-4 py-2 text-sm rounded-full font-bold ${theme.closeButtonBackground} ${theme.closeButtonText}`}
-                  >
-                    Close
-                  </motion.button>
-                </div>
-                <div className="pt-4 relative">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className={`${theme.contentTextColor} text-sm lg:text-base pb-6 flex flex-col items-start gap-4 overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]`}
-                  >
-                    {typeof active.content === "function"
-                      ? active.content()
-                      : active.content}
-                  </motion.div>
-                </div>
+      {active && typeof active === "object" ? (
+        <div className="fixed inset-0 flex items-center justify-center z-[9100] px-4">
+          <div
+            ref={ref}
+            className={`w-full max-w-[500px] max-h-[80vh] md:max-h-[90vh] flex flex-col ${theme.expandedCardBackground} ${theme.expandedCardBorder} rounded-xl sm:rounded-3xl overflow-hidden transition-all duration-200 ease-in-out`}
+          >
+            <div className="top-0 z-10 w-full p-4 sm:p-5 bg-inherit border-b border-gray-800 flex justify-between items-center relative">
+              <h3
+                className={`font-bold text-xl sm:text-2xl ${theme.titleColor} pr-8`}
+              >
+                {active.title}
+              </h3>
+              <button
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white rounded-full h-8 w-8 flex items-center justify-center shadow-md border border-gray-200"
+                onClick={() => setActive(null)}
+                aria-label="Close panel"
+              >
+                <CloseIcon />
+              </button>
+            </div>
+
+            <div className="p-4 sm:p-6 overflow-y-auto">
+              <p
+                className={`${theme.contentTextColor} mb-4 sm:mb-6 text-sm sm:text-base`}
+              >
+                {active.description}
+              </p>
+
+              <div
+                className={`${theme.contentTextColor} text-sm sm:text-base pb-4 sm:pb-6 flex flex-col items-start gap-3 sm:gap-4`}
+              >
+                {typeof active.content === "function"
+                  ? active.content()
+                  : active.content}
               </div>
-            </motion.div>
+
+              <div className="mt-4 pt-2 border-t border-gray-800 flex justify-center">
+                <button
+                  onClick={() => setActive(null)}
+                  className={`px-6 py-3 text-sm rounded-lg font-bold ${theme.closeButtonBackground} ${theme.closeButtonText} w-full sm:w-auto`}
+                >
+                  Close panel
+                </button>
+              </div>
+            </div>
           </div>
-        ) : null}
-      </AnimatePresence>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        </div>
+      ) : null}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
         {services.map((service, index) => (
-          <motion.div
+          <div
             key={`card-${service.title}-${index}-${id}`}
-            whileHover={{ scale: theme.cardHoverScale }}
-            transition={{ duration: 0.2 }}
             onClick={() => setActive(service)}
-            className={`rounded-xl ${theme.cardBorder} ${theme.cardBackground} p-6 cursor-pointer transition-all duration-300 ease-in-out flex flex-col justify-between h-[300px]`}
+            className={`rounded-xl ${theme.cardBorder} ${theme.cardBackground} p-4 sm:p-6 cursor-pointer transition-all duration-200 ease-in-out hover:scale-[1.02] flex flex-col justify-between min-h-[250px] sm:h-[300px]`}
           >
             <div>
-              <motion.h3
-                className={`font-bold text-2xl ${theme.titleColor} mb-4`}
+              <h3
+                className={`font-bold text-xl sm:text-2xl ${theme.titleColor} mb-2 sm:mb-4`}
               >
                 {service.title}
-              </motion.h3>
-              <motion.p
-                className={`${theme.descriptionColor} text-sm line-clamp-3`}
-              >
+              </h3>
+              <p className={`${theme.descriptionColor} text-sm line-clamp-3`}>
                 {service.description}
-              </motion.p>
+              </p>
             </div>
             <div className="mt-auto pt-4">
-              <motion.button
-                className={`px-4 py-2 text-sm rounded-lg ${theme.ctaButtonBorder} ${theme.ctaButtonText} ${theme.ctaButtonBackground} ${theme.ctaButtonHoverBg} transition-colors`}
+              <button
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 text-sm rounded-lg ${theme.ctaButtonBorder} ${theme.ctaButtonText} ${theme.ctaButtonBackground} ${theme.ctaButtonHoverBg} transition-colors`}
               >
                 {service.ctaText}
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </>
@@ -206,10 +197,7 @@ export function ServiceExpandableCard({
 
 export const CloseIcon = () => {
   return (
-    <motion.svg
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -219,11 +207,11 @@ export const CloseIcon = () => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="h-4 w-4 text-black"
+      className="h-5 w-5 text-black"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M18 6l-12 12" />
       <path d="M6 6l12 12" />
-    </motion.svg>
+    </svg>
   );
 };

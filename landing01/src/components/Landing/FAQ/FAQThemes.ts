@@ -15,19 +15,19 @@ export const darkGrayTheme: ExpandableCardTheme = {
 
   // Button colors
   ctaButtonBackground: "bg-gray-400 hover:bg-gray-900",
-  ctaButtonText: "text-black hover:text-white hover:font-bold",
+  ctaButtonText: "text-black font-bold hover:text-white",
   ctaButtonHoverBackground: "group-hover:bg-slate-300",
   ctaButtonHoverText: "group-hover:text-black",
 
   // Expanded card colors
-  expandedCardBackground: "bg-gray-800",
-  expandedCardTextColor: "text-gray-100",
-  closeButtonBackground: "bg-gray-700",
-  closeButtonText: "text-white",
-  backdropEffect: "bg-gray-950/50 backdrop-blur-md",
+  expandedCardBackground: "bg-[#111]",
+  expandedCardTextColor: "text-white",
+  closeButtonBackground: "bg-slate-100",
+  closeButtonText: "text-black",
+  backdropEffect: "backdrop-blur-xl bg-black/10",
 
   // Container styling
-  containerBackground: "bg-gray-600 backdrop-blur-sm",
+  containerBackground: "bg-gray-900/80 backdrop-blur-sm",
   containerBorder: "border border-gray-700/50",
   containerShadow: "shadow-xl shadow-black/30",
   containerPadding: "p-6",

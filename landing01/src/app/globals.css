@@ -45,7 +45,7 @@
 
 /* Apply fonts and colors globally */
 body {
-  background: #111827;
+  background: #292524;
   color: #f1f5f9;
   font-family: var(--font-sans); /* now using Bricolage Grotesque */
   min-height: 100vh;
@@ -166,38 +166,24 @@ html {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply text-foreground;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
     @apply bg-background text-foreground;
   }
 }
 
-@keyframes aurora {
-  0% {
-    background-position:
-      50% 0%,
-      50% 0%;
-  }
-  50% {
-    background-position:
-      200% 50%,
-      200% 50%;
-  }
-  100% {
-    background-position:
-      350% 100%,
-      350% 100%;
-  }
-}
+/* Removed aurora animation for better performance */
 
-.animate-aurora {
-  animation: aurora 90s linear infinite;
+@layer utilities {
+  /* Add custom hover scale utilities */
+  .hover\:scale-101:hover {
+    transform: scale(1.01);
+  }
+  
+  .hover\:scale-102:hover {
+    transform: scale(1.02);
+  }
+  
+  .hover\:scale-103:hover {
+    transform: scale(1.03);
+  }
 }
 

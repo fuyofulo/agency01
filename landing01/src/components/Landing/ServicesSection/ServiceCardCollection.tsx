@@ -226,7 +226,7 @@ const services = [
 
 export default function ServiceCardCollection() {
   return (
-    <div className="max-w-[1400px] mx-auto px-4 py-12">
+    <div className="w-full mx-auto px-4 py-6 sm:py-12">
       {/* Use default theme */}
       <ServiceExpandableCard services={services} />
 
