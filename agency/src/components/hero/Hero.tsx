@@ -10,7 +10,7 @@ interface ServiceCard {
 }
 
 const FeatureItem = ({ text }: Feature) => (
-  <p className="flex items-center text-2xl tracking-widest">
+  <p className="flex items-center text-base md:text-2xl tracking-widest">
     <span className="text-rose-500 mr-2">&gt;</span>
     {text}
   </p>
