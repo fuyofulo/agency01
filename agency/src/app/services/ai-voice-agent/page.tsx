@@ -91,7 +91,7 @@ export default function AIVoiceAgentPage() {
       <div className="max-w-6xl mx-auto px-4">
         {/* Header Section */}
         <h1 className="text-4xl md:text-5xl text-white font-bold mb-8 tracking-widest pt-8">
-          Intelligent Voice Assistant
+          AI Voice Agent
         </h1>
 
         {/* Description Section */}

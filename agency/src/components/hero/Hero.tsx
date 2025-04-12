@@ -1,6 +1,6 @@
 "use client";
-import { startVapiAssistant } from "@/functions/Vapi";
 import { Bot, Code, PhoneCall, LucideIcon } from "lucide-react";
+import Link from "next/link";
 
 interface Feature {
   text: string;
@@ -10,6 +10,7 @@ interface Feature {
 interface ServiceCard {
   icon: LucideIcon;
   label: string;
+  href?: string;
   onClick?: () => void;
 }
 
@@ -23,15 +24,28 @@ const FeatureItem = ({ text, onClick }: Feature) => (
   </p>
 );
 
-const ServiceButton = ({ icon: Icon, label, onClick }: ServiceCard) => (
-  <div
-    className="flex items-center gap-2 bg-rose-900 hover:bg-rose-800 transition text-white px-6 py-3 rounded-lg cursor-pointer"
-    onClick={onClick}
-  >
-    <Icon className="w-5 h-5" />
-    {label}
-  </div>
-);
+const ServiceButton = ({ icon: Icon, label, href, onClick }: ServiceCard) => {
+  if (onClick) {
+    return (
+      <div
+        className="flex items-center gap-2 bg-rose-900 hover:bg-rose-800 transition text-white px-6 py-3 rounded-lg cursor-pointer"
+        onClick={onClick}
+      >
+        <Icon className="w-5 h-5" />
+        {label}
+      </div>
+    );
+  }
+
+  return (
+    <Link href={href || "#"} className="block">
+      <div className="flex items-center gap-2 bg-rose-900 hover:bg-rose-800 transition text-white px-6 py-3 rounded-lg cursor-pointer">
+        <Icon className="w-5 h-5" />
+        {label}
+      </div>
+    </Link>
+  );
+};
 
 export const Hero = () => {
   const features: Feature[] = [
@@ -41,9 +55,17 @@ export const Hero = () => {
   ];
 
   const services: ServiceCard[] = [
-    { icon: Bot, label: "AI Assistant" },
-    { icon: PhoneCall, label: "AI Voice Agent", onClick: startVapiAssistant },
-    { icon: Code, label: "AI Powered Website" },
+    {
+      icon: Bot,
+      label: "AI Assistant",
+      href: "/services/intelligent-assistant",
+    },
+    {
+      icon: PhoneCall,
+      label: "AI Voice Agent",
+      href: "/services/ai-voice-agent",
+    },
+    { icon: Code, label: "AI Powered Website", href: "/services/website" },
   ];
 
   return (
@@ -76,6 +98,7 @@ export const Hero = () => {
             key={index}
             icon={service.icon}
             label={service.label}
+            href={service.href}
             onClick={service.onClick}
           />
         ))}
