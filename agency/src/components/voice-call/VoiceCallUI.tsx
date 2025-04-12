@@ -141,10 +141,7 @@ export default function VoiceCallUI() {
             className="w-full py-2 px-4 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center"
           >
             {isConnecting ? (
-              <>
-                <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2" />
-                Cancel
-              </>
+              <>Cancel</>
             ) : (
               <>
                 <X className="w-4 h-4 mr-2" />
