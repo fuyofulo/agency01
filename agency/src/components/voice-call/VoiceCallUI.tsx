@@ -13,8 +13,16 @@ export function showVapiModal() {
   }
 }
 
+// Define types for message events
+interface SpeechUpdateEvent {
+  type: string;
+  status: string;
+  role: string;
+  turn?: number;
+}
+
 // Debug log function to better track events
-function logEvent(event: string, data?: any) {
+function logEvent(event: string, data?: unknown) {
   const timestamp = new Date().toISOString().substr(11, 12);
   console.log(`${timestamp} [VoiceCallUI] ${event}`, data || "");
 }
@@ -45,30 +53,26 @@ export default function VoiceCallUI() {
       setIsAssistantSpeaking(false);
     };
 
-    // CRITICAL HANDLER: Process message events to track who's speaking
-    // The logs show we need to capture type:"speech-update" messages
-    const handleMessage = (message: any) => {
-      logEvent("📨 Message received", message);
+    // CRITICAL HANDLER: This is the primary way to track speaking status
+    const handleSpeechUpdate = (update: SpeechUpdateEvent) => {
+      logEvent("🎤 Speech update", update);
 
-      // Check for speech updates
-      if (message.type === "speech-update") {
-        // Assistant started speaking
-        if (message.status === "started" && message.role === "assistant") {
-          logEvent("🔊 Assistant started speaking");
-          setIsAssistantSpeaking(true);
-        }
+      // When assistant starts speaking
+      if (update.status === "started" && update.role === "assistant") {
+        logEvent("🔊 Assistant started speaking");
+        setIsAssistantSpeaking(true);
+      }
 
-        // Assistant stopped speaking
-        else if (message.status === "stopped" && message.role === "assistant") {
-          logEvent("🔇 Assistant stopped speaking");
-          setIsAssistantSpeaking(false);
-        }
+      // When assistant stops speaking
+      else if (update.status === "stopped" && update.role === "assistant") {
+        logEvent("🔇 Assistant stopped speaking");
+        setIsAssistantSpeaking(false);
+      }
 
-        // User started speaking (assistant must be listening)
-        else if (message.status === "started" && message.role === "user") {
-          logEvent("👤 User started speaking");
-          setIsAssistantSpeaking(false);
-        }
+      // When user starts speaking (ensure assistant is shown as not speaking)
+      else if (update.status === "started" && update.role === "user") {
+        logEvent("👤 User started speaking");
+        setIsAssistantSpeaking(false);
       }
     };
 
@@ -76,14 +80,14 @@ export default function VoiceCallUI() {
     logEvent("🔄 Registering event handlers");
     vapi.on("call-start", handleCallStart);
     vapi.on("call-end", handleCallEnd);
-    vapi.on("message", handleMessage);
+    vapi.on("message", handleSpeechUpdate);
 
     return () => {
       // Clean up standard events
       logEvent("♻️ Cleaning up event handlers");
       vapi.off("call-start", handleCallStart);
       vapi.off("call-end", handleCallEnd);
-      vapi.off("message", handleMessage);
+      vapi.off("message", handleSpeechUpdate);
     };
   }, []);
 
@@ -117,7 +121,7 @@ export default function VoiceCallUI() {
       <div className="bg-gray-900 rounded-lg shadow-xl border border-rose-800 w-64 overflow-hidden">
         {/* Header */}
         <div className="bg-rose-900 p-3 flex justify-between items-center">
-          <h3 className="text-white font-medium">Fuyo's Pizzeria</h3>
+          <h3 className="text-white font-medium">Fuyo&apos;s Pizza</h3>
           <button onClick={endCall} className="text-gray-300 hover:text-white">
             <X className="w-5 h-5" />
           </button>

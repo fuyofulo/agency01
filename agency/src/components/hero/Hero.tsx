@@ -1,6 +1,6 @@
 "use client";
 import { startVapiAssistant } from "@/functions/Vapi";
-import { Bot, PhoneCall, Code, LucideIcon } from "lucide-react";
+import { Bot, Code, PhoneCall, LucideIcon } from "lucide-react";
 
 interface Feature {
   text: string;

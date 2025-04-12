@@ -1,7 +1,7 @@
 "use client";
 
 import { startVapiAssistant } from "@/functions/Vapi";
-import { PhoneCall, LucideIcon } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
 interface ServiceButtonProps {
   icon: LucideIcon;
