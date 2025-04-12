@@ -10,8 +10,8 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ title, description }: FeatureCardProps) => (
   <div className="bg-[#ffffff0f] backdrop-blur-sm p-6 rounded-lg border border-neutral-700 h-full">
-    <h3 className="text-xl text-rose-500 mb-4">{title}</h3>
-    <p className="text-gray-300">{description}</p>
+    <h3 className="text-xl text-rose-500 mb-4 tracking-wider">{title}</h3>
+    <p className="text-gray-300 tracking-wider">{description}</p>
   </div>
 );
 
@@ -27,10 +27,10 @@ const UseCaseCard = ({ title, description }: UseCaseCardProps) => (
         <Check className="h-5 w-5 text-rose-500" />
       </div>
       <div className="ml-3">
-        <h3 className="text-xl text-gray-200">{title}</h3>
+        <h3 className="text-xl text-gray-200 tracking-wider">{title}</h3>
       </div>
     </div>
-    <p className="text-gray-400">{description}</p>
+    <p className="text-gray-400 tracking-wider">{description}</p>
   </div>
 );
 
@@ -90,17 +90,17 @@ export default function AIVoiceAgentPage() {
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header Section */}
-        <h1 className="text-4xl md:text-5xl text-white font-bold mb-8 tracking-wider pt-8">
+        <h1 className="text-4xl md:text-5xl text-white font-bold mb-8 tracking-widest pt-8">
           Intelligent Voice Assistant
         </h1>
 
         {/* Description Section */}
         <div className="mb-12">
           <div className="bg-[#ffffff0f] backdrop-blur-sm p-8 rounded-lg border border-neutral-700">
-            <p className="text-gray-200 text-lg leading-relaxed">
+            <p className="text-gray-200 text-lg leading-relaxed tracking-wider">
               {descriptionText.intro}
             </p>
-            <p className="text-gray-200 text-lg mt-4 leading-relaxed">
+            <p className="text-gray-200 text-lg mt-4 leading-relaxed tracking-wider">
               {descriptionText.conclusion}
             </p>
           </div>
@@ -110,7 +110,7 @@ export default function AIVoiceAgentPage() {
         <div className="flex justify-center mb-12">
           <button
             onClick={startVapiAssistant}
-            className="bg-rose-900 hover:bg-rose-800 transition text-white px-8 py-4 rounded-lg flex items-center gap-3 text-lg"
+            className="bg-rose-900 hover:bg-rose-800 transition text-white px-8 py-4 rounded-lg flex items-center gap-3 text-lg tracking-wider"
           >
             <Phone className="w-5 h-5" />
             Try the Voice Assistant Demo
@@ -118,10 +118,10 @@ export default function AIVoiceAgentPage() {
         </div>
 
         {/* Capabilities Section */}
-        <h2 className="text-3xl text-rose-500 mb-6 tracking-wider">
+        <h2 className="text-3xl text-rose-500 mb-6 tracking-widest">
           Capabilities
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 tracking-wider">
           {capabilities.map((capability, index) => (
             <FeatureCard
               key={index}
@@ -132,10 +132,10 @@ export default function AIVoiceAgentPage() {
         </div>
 
         {/* Ideal For Section */}
-        <h2 className="text-3xl text-rose-500 mb-6 tracking-wider">
+        <h2 className="text-3xl text-rose-500 mb-6 tracking-widest">
           Ideal For
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 tracking-wider">
           {useCases.map((useCase, index) => (
             <UseCaseCard
               key={index}
