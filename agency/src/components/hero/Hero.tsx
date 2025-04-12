@@ -1,23 +1,33 @@
+"use client";
+import { startVapiAssistant } from "@/functions/Vapi";
 import { Bot, PhoneCall, Code, LucideIcon } from "lucide-react";
 
 interface Feature {
   text: string;
+  onClick?: () => void;
 }
 
 interface ServiceCard {
   icon: LucideIcon;
   label: string;
+  onClick?: () => void;
 }
 
-const FeatureItem = ({ text }: Feature) => (
-  <p className="flex items-center text-base md:text-2xl tracking-widest">
+const FeatureItem = ({ text, onClick }: Feature) => (
+  <p
+    className="flex items-center text-base md:text-2xl tracking-widest cursor-pointer"
+    onClick={onClick}
+  >
     <span className="text-rose-500 mr-2">&gt;</span>
     {text}
   </p>
 );
 
-const ServiceButton = ({ icon: Icon, label }: ServiceCard) => (
-  <div className="flex items-center gap-2 bg-rose-900 hover:bg-rose-800 transition text-white px-6 py-3 rounded-lg cursor-pointer">
+const ServiceButton = ({ icon: Icon, label, onClick }: ServiceCard) => (
+  <div
+    className="flex items-center gap-2 bg-rose-900 hover:bg-rose-800 transition text-white px-6 py-3 rounded-lg cursor-pointer"
+    onClick={onClick}
+  >
     <Icon className="w-5 h-5" />
     {label}
   </div>
@@ -27,12 +37,12 @@ export const Hero = () => {
   const features: Feature[] = [
     { text: "AI assistants and voice agents" },
     { text: "24/7 automated customer support" },
-    { text: "Professional websites using AI" },
+    { text: "Professional websites with AI" },
   ];
 
   const services: ServiceCard[] = [
     { icon: Bot, label: "AI Assistant" },
-    { icon: PhoneCall, label: "AI Voice Agent" },
+    { icon: PhoneCall, label: "AI Voice Agent", onClick: startVapiAssistant },
     { icon: Code, label: "AI Powered Website" },
   ];
 
@@ -51,7 +61,11 @@ export const Hero = () => {
       {/* Feature List */}
       <div className="text-left text-gray-300 space-y-2 mb-10">
         {features.map((feature, index) => (
-          <FeatureItem key={index} text={feature.text} />
+          <FeatureItem
+            key={index}
+            text={feature.text}
+            onClick={feature.onClick}
+          />
         ))}
       </div>
 
@@ -62,6 +76,7 @@ export const Hero = () => {
             key={index}
             icon={service.icon}
             label={service.label}
+            onClick={service.onClick}
           />
         ))}
       </div>

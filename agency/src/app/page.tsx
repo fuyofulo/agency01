@@ -4,6 +4,7 @@ import { ProcessFlow } from "@/components/services/ProcessFlow";
 import { Testimonials } from "@/components/testimonials/Testimonials";
 import { Contact } from "@/components/contact/Contact";
 import { Navbar } from "@/components/navbar/Navbar";
+import { VapiUI } from "@/functions/Vapi";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <ProcessFlow />
       <Testimonials />
       <Contact />
+      <VapiUI />
     </>
   );
 }
