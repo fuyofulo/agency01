@@ -15,8 +15,8 @@ const API_KEY = process.env.NEXT_PUBLIC_VAPI_API_KEY;
 const vapi = new Vapi(API_KEY || "");
 
 export const assistantOptions = {
-  name: "Fuyo's Pizza Front Desk",
-  firstMessage: "Fuyo's Pizza speaking, how can I help you?",
+  name: "Vapi's Pizza Front Desk",
+  firstMessage: "Vappy's Pizzeria speaking, how can I help you?",
   transcriber: {
     provider: "deepgram" as const,
     model: "nova-2",
@@ -32,7 +32,7 @@ export const assistantOptions = {
     messages: [
       {
         role: "system" as const,
-        content: `You are a voice assistant for Fuyo's Pizza, a pizza shop located on the Internet.
+        content: `You are a voice assistant for Vappy's Pizzeria, a pizza shop located on the Internet.
 
   Your job is to take the order of customers calling in. The menu has only 3 types
   of items: pizza, sides, and drinks. There are no other types of items on the menu.

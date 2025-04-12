@@ -69,7 +69,7 @@ export const Services = () => {
           description: "Continuously improves from customer interactions",
         },
       ],
-      buttonUrl: "/services/chatbot",
+      buttonUrl: "/services/intelligent-assistant",
     },
     {
       title: "AI VOICE AGENT",
@@ -87,7 +87,7 @@ export const Services = () => {
           description: "Seamlessly connects to staff when needed",
         },
       ],
-      buttonUrl: "/services/phone-agent",
+      buttonUrl: "/services/ai-voice-agent",
     },
     {
       title: "AI POWERED WEBSITE",

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 interface NavLink {
   text: string;
@@ -44,13 +45,9 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a
-              href="#home"
-              className="text-rose-500 text-3xl tracking-widest"
-              onClick={(e) => scrollToSection(e, "#home")}
-            >
+            <Link href="/" className="text-rose-500 text-3xl tracking-widest">
               AGENCY
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Menu */}
