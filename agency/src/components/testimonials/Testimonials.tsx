@@ -22,14 +22,14 @@ export const Testimonials = () => {
   const testimonials: Testimonial[] = [
     {
       quote:
-        "The chatbot handles our basic inquiries perfectly, while the phone agent manages all our reservations. It&apos;s like having a full support team 24/7.",
+        "The chatbot handles our basic inquiries perfectly, while the phone agent manages all our reservations. It's like having a full support team 24/7.",
       name: "Sarah Chen",
       title: "Restaurant Owner",
       company: "Fusion Kitchen",
     },
     {
       quote:
-        "Our customers love having both chat and phone support. The AI agents sound so natural, most people don&apos;t realize they&apos;re not human.",
+        "Our customers love having both chat and phone support. The AI agents sound so natural, most people don't realize they're not human.",
       name: "Michael Rodriguez",
       title: "Support Director",
       company: "TechFlow Solutions",
