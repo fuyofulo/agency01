@@ -76,7 +76,7 @@ export default function WebsiteServicePage() {
     {
       title: "Service Pros",
       description:
-        'From plumbers to consultants, let our voice assistant handle bookings or FAQs like "What\'s your cancellation policy?"—so you can focus on delivering top-notch service.',
+        "From plumbers to consultants, let our voice assistant handle bookings or FAQs like 'What's your cancellation policy?'—so you can focus on delivering top-notch service.",
     },
     {
       title: "Content Hubs",
@@ -121,7 +121,7 @@ export default function WebsiteServicePage() {
 
         {/* Use Cases Section */}
         <h2 className="text-3xl text-rose-500 mb-6 tracking-wider">
-          Who's It For?
+          Ideal for
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {useCases.map((useCase, index) => (
