@@ -117,7 +117,7 @@ export default function VoiceCallUI() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 left-6 z-50">
       <div className="bg-gray-900 rounded-lg shadow-xl border border-rose-800 w-64 overflow-hidden">
         {/* Header */}
         <div className="bg-rose-900 p-3 flex justify-between items-center">
