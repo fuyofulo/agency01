@@ -15,8 +15,8 @@ const API_KEY = process.env.NEXT_PUBLIC_VAPI_API_KEY;
 const vapi = new Vapi(API_KEY || "");
 
 export const assistantOptions = {
-  name: "Agent Fuyo",
-  firstMessage: "Hello! Agent Fuyo here—how can I help you today?",
+  name: "Agent Fuuyo",
+  firstMessage: "Hello! Agent Fuuyo here—how can I help you today?",
   transcriber: {
     provider: "deepgram" as const,
     model: "nova-2" as const,
@@ -37,7 +37,7 @@ export const assistantOptions = {
 
         1. **Open with Business Discovery:**
           - Start each call by asking about the caller's business. For example:
-            "Thanks for calling Fuyo Automation. Can you tell me about your business and the main challenges you're facing?"
+            "Thanks for calling our agency. Can you tell me about your business and the main challenges you're facing?"
 
         2. **Explain Core Services & Delivery Methods:**
           - **Automated Appointment Booking:**
