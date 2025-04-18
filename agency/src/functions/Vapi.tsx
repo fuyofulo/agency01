@@ -16,7 +16,7 @@ const vapi = new Vapi(API_KEY || "");
 
 export const assistantOptions = {
   name: "Agent Fuyo",
-  firstMessage: "Hello! Agent Fuyo here—how can I help you automate your business today?",
+  firstMessage: "Hello! Agent Fuyo here—how can I help you today?",
   transcriber: {
     provider: "deepgram" as const,
     model: "nova-2" as const,
