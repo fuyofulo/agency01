@@ -11,8 +11,11 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "agency",
-  description: "agency",
+  title: "Aloria Labs",
+  description: "Aloria Labs",
+  icons: {
+    icon: [],
+  },
 };
 
 export default function RootLayout({
