@@ -121,7 +121,7 @@ export default function VoiceCallUI() {
       <div className="bg-gray-900 rounded-lg shadow-xl border border-rose-800 w-64 overflow-hidden">
         {/* Header */}
         <div className="bg-rose-900 p-3 flex justify-between items-center">
-          <h3 className="text-white font-medium">Agent Fuyo</h3>
+          <h3 className="text-white font-medium">Agent Aloria</h3>
           <button onClick={endCall} className="text-gray-300 hover:text-white">
             <X className="w-5 h-5" />
           </button>

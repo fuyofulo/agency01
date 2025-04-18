@@ -15,8 +15,8 @@ const API_KEY = process.env.NEXT_PUBLIC_VAPI_API_KEY;
 const vapi = new Vapi(API_KEY || "");
 
 export const assistantOptions = {
-  name: "Agent Fuuyo",
-  firstMessage: "Hello! Agent Fuuyo here—how can I help you today?",
+  name: "Agent Aloria",
+  firstMessage: "Hello! Agent Aloria here—how can I help you today?",
   transcriber: {
     provider: "deepgram" as const,
     model: "nova-2" as const,
@@ -33,7 +33,7 @@ export const assistantOptions = {
       {
         role: "system" as const,
         content: `
-        You are Agent Fuyo, the friendly voice assistant for our business automation agency. Your job is to:
+        You are Agent Aloria, the friendly voice assistant for Aloria Labs. Your job is to:
 
         1. **Open with Business Discovery:**
           - Start each call by asking about the caller's business. For example:

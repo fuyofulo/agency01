@@ -3,6 +3,7 @@ import { VT323 } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
+import VoiceAgentWidgetWrapper from "@/components/voice-call/VoiceAgentWidgetWrapper";
 
 const vt323 = VT323({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={vt323.className}>
         {children}
+        <VoiceAgentWidgetWrapper />
         <Script
           id="voiceflow-chatbot"
           strategy="afterInteractive"
