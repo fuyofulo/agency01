@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useCalendly } from "@/components/providers/CalendlyProvider";
 
 interface NavLink {
@@ -12,33 +13,45 @@ interface NavLink {
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { openCalendlyModal } = useCalendly();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHomePage = pathname === "/";
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const scrollToSection = (
+  const handleNavigation = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     e.preventDefault();
     setIsMenuOpen(false);
 
-    const element = document.querySelector(href);
-    if (element) {
-      window.scrollTo({
-        top: element.getBoundingClientRect().top + window.scrollY - 80, // Offset for navbar height
-        behavior: "smooth",
-      });
+    if (isHomePage && href.startsWith("#")) {
+      // If we're on the homepage and it's a hash link, scroll to the section
+      const element = document.querySelector(href);
+      if (element) {
+        window.scrollTo({
+          top: element.getBoundingClientRect().top + window.scrollY - 80, // Offset for navbar height
+          behavior: "smooth",
+        });
+      }
+    } else if (href.startsWith("#")) {
+      // If it's a hash link but we're not on the homepage, navigate to homepage with hash
+      router.push(`/${href}`);
+    } else {
+      // For regular links
+      router.push(href);
     }
   };
 
   const navLinks: NavLink[] = [
-    { text: "Home", href: "#home" },
-    { text: "Services", href: "#services" },
-    { text: "Process", href: "#process" },
-    // { text: "Testimonials", href: "#testimonials" },
-    { text: "Contact", href: "#contact" },
+    { text: "Home", href: isHomePage ? "#home" : "/" },
+    { text: "Services", href: isHomePage ? "#services" : "/#services" },
+    { text: "Process", href: isHomePage ? "#process" : "/#process" },
+    // { text: "Testimonials", href: isHomePage ? "#testimonials" : "/#testimonials" },
+    { text: "Contact", href: isHomePage ? "#contact" : "/#contact" },
   ];
 
   return (
@@ -48,7 +61,7 @@ export const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="text-rose-500 text-3xl tracking-widest">
-              AGENCY
+              Aloria Labs
             </Link>
           </div>
 
@@ -59,7 +72,7 @@ export const Navbar = () => {
                 <a
                   key={index}
                   href={link.href}
-                  onClick={(e) => scrollToSection(e, link.href)}
+                  onClick={(e) => handleNavigation(e, link.href)}
                   className="text-gray-300 hover:text-rose-500 px-3 py-2 text-lg tracking-widest transition-colors duration-300"
                 >
                   {link.text}
@@ -100,7 +113,7 @@ export const Navbar = () => {
               <a
                 key={index}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
+                onClick={(e) => handleNavigation(e, link.href)}
                 className="text-gray-300 hover:text-rose-500 block px-3 py-2 text-base tracking-widest"
               >
                 {link.text}
