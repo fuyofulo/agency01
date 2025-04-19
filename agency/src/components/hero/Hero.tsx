@@ -1,6 +1,8 @@
 "use client";
 import { Bot, Code, PhoneCall, LucideIcon } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { AnimateOnScroll } from "../animation/AnimateOnScroll";
 
 interface Feature {
   text: string;
@@ -48,6 +50,24 @@ const ServiceButton = ({ icon: Icon, label, href, onClick }: ServiceCard) => {
 };
 
 export const Hero = () => {
+  const [scrollY, setScrollY] = useState(0);
+
+  // Parallax effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Calculate parallax transforms
+  const titleTransform = `translateY(${scrollY * 0.1}px)`;
+  const subtitleTransform = `translateY(${scrollY * 0.05}px)`;
+  const featuresTransform = `translateY(${scrollY * -0.08}px)`;
+  const buttonsTransform = `translateY(${scrollY * -0.12}px)`;
+
   const features: Feature[] = [
     { text: "AI assistants and voice agents" },
     { text: "24/7 automated customer support" },
@@ -68,40 +88,132 @@ export const Hero = () => {
     { icon: Code, label: "AI Powered Website", href: "/services/website" },
   ];
 
+  // Add a particle effect background
+  const [particles, setParticles] = useState<
+    { x: number; y: number; size: number; speed: number }[]
+  >([]);
+
+  useEffect(() => {
+    // Create particles
+    const newParticles = Array.from({ length: 50 }, () => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 1,
+      speed: Math.random() * 0.2 + 0.1,
+    }));
+
+    setParticles(newParticles);
+
+    // Animate particles
+    const interval = setInterval(() => {
+      setParticles((prevParticles) =>
+        prevParticles.map((particle) => ({
+          ...particle,
+          y: (particle.y + particle.speed) % 100,
+        }))
+      );
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div
       id="home"
-      className="flex flex-col items-center justify-center tracking-wider min-h-screen text-white px-4 pt-16"
+      className="flex flex-col items-center justify-center tracking-wider min-h-screen text-white px-4 pt-16 relative overflow-hidden"
     >
-      <h1 className="text-5xl md:text-8xl tracking-widest mb-4">
-        Aloria Labs
-      </h1>
-      <h2 className="text-4xl md:text-5xl text-rose-500 mb-8 tracking-widest font-light text-center w-full">
-        Automate Customer Support with AI
-      </h2>
-
-      {/* Feature List */}
-      <div className="text-left text-gray-300 space-y-2 mb-10">
-        {features.map((feature, index) => (
-          <FeatureItem
-            key={index}
-            text={feature.text}
-            onClick={feature.onClick}
+      {/* Particle background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {particles.map((particle, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-rose-500 opacity-30"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              transition: "top 0.5s linear",
+            }}
           />
         ))}
       </div>
 
-      {/* Buttons */}
-      <div className="flex flex-wrap justify-center gap-4">
-        {services.map((service, index) => (
-          <ServiceButton
-            key={index}
-            icon={service.icon}
-            label={service.label}
-            href={service.href}
-            onClick={service.onClick}
-          />
-        ))}
+      {/* Content with parallax */}
+      <div className="relative z-10">
+        <AnimateOnScroll direction="down" timing="slow" className="mb-4">
+          <h1
+            className="text-5xl md:text-8xl tracking-widest text-center"
+            style={{
+              transform: titleTransform,
+              transition: "transform 0.2s ease-out",
+            }}
+          >
+            Aloria Labs
+          </h1>
+        </AnimateOnScroll>
+
+        <AnimateOnScroll
+          direction="up"
+          delay={200}
+          timing="slow"
+          className="mb-8"
+        >
+          <h2
+            className="text-4xl md:text-5xl text-rose-500 tracking-widest font-light text-center w-full"
+            style={{
+              transform: subtitleTransform,
+              transition: "transform 0.2s ease-out",
+            }}
+          >
+            Automate Customer Support with AI
+          </h2>
+        </AnimateOnScroll>
+
+        {/* Feature List */}
+        <div
+          className="text-left text-gray-300 space-y-2 mb-10"
+          style={{
+            transform: featuresTransform,
+            transition: "transform 0.2s ease-out",
+          }}
+        >
+          {features.map((feature, index) => (
+            <AnimateOnScroll
+              key={index}
+              direction="left"
+              delay={300 + index * 100}
+              timing="fast"
+            >
+              <FeatureItem text={feature.text} onClick={feature.onClick} />
+            </AnimateOnScroll>
+          ))}
+        </div>
+
+        {/* Buttons */}
+        <div
+          className="flex flex-wrap justify-center gap-4"
+          style={{
+            transform: buttonsTransform,
+            transition: "transform 0.2s ease-out",
+          }}
+        >
+          {services.map((service, index) => (
+            <AnimateOnScroll
+              key={index}
+              direction="up"
+              delay={600 + index * 100}
+              timing="normal"
+            >
+              <ServiceButton
+                icon={service.icon}
+                label={service.label}
+                href={service.href}
+                onClick={service.onClick}
+              />
+            </AnimateOnScroll>
+          ))}
+        </div>
       </div>
     </div>
   );

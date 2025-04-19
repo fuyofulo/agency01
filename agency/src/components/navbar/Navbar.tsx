@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,6 +16,35 @@ export const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [hidden, setHidden] = useState(false);
+
+  // Handle scroll events for navbar appearance
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Determine if we've scrolled enough to change appearance
+      if (currentScrollY > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 400) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -55,12 +84,29 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-black/80 backdrop-blur-sm border-b border-neutral-400">
+    <nav
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-black/90 backdrop-blur-lg shadow-lg"
+          : "bg-black/80 backdrop-blur-sm"
+      } ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      } border-b border-neutral-400`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div
+          className={`flex items-center justify-between transition-all duration-300 ${
+            scrolled ? "h-14" : "h-16"
+          }`}
+        >
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-rose-500 text-3xl tracking-widest">
+            <Link
+              href="/"
+              className={`text-rose-500 transition-all duration-300 ${
+                scrolled ? "text-2xl" : "text-3xl"
+              } tracking-widest`}
+            >
               Aloria Labs
             </Link>
           </div>
@@ -73,14 +119,18 @@ export const Navbar = () => {
                   key={index}
                   href={link.href}
                   onClick={(e) => handleNavigation(e, link.href)}
-                  className="text-gray-300 hover:text-rose-500 px-3 py-2 text-lg tracking-widest transition-colors duration-300"
+                  className={`text-gray-300 hover:text-rose-500 px-3 py-2 transition-all duration-300 ${
+                    scrolled ? "text-base" : "text-lg"
+                  } tracking-widest hover:scale-105`}
                 >
                   {link.text}
                 </a>
               ))}
               <button
                 onClick={openCalendlyModal}
-                className="bg-rose-900 text-white hover:bg-rose-800 px-4 py-2 rounded-lg text-lg tracking-widest transition-colors duration-300"
+                className={`bg-rose-900 text-white hover:bg-rose-800 transition-all duration-300 rounded-lg tracking-widest ${
+                  scrolled ? "px-3 py-1.5 text-base" : "px-4 py-2 text-lg"
+                } hover:scale-105`}
               >
                 Book a Call
               </button>
