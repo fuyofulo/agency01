@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 
 type AnimationDirection = "up" | "down" | "left" | "right" | "fade";
 type AnimationTiming = "fast" | "normal" | "slow";
@@ -22,18 +22,36 @@ export const useScrollAnimation = ({
 }: ScrollAnimationOptions = {}) => {
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
+  // Memoize the observer creation to avoid recreation on every render
+  const setupObserver = useCallback(() => {
+    // Cleanup previous observer if it exists
+    if (observerRef.current && ref.current) {
+      observerRef.current.unobserve(ref.current);
+    }
+
+    observerRef.current = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            setIsVisible(true);
-          }, delay);
+          if (delay) {
+            // Use setTimeout for delay, but with requestAnimationFrame for better performance
+            setTimeout(() => {
+              // Use requestAnimationFrame to ensure the visibility change happens on the next paint
+              window.requestAnimationFrame(() => {
+                setIsVisible(true);
+              });
+            }, delay);
+          } else {
+            // If no delay, still use RAF for smoother animation
+            window.requestAnimationFrame(() => {
+              setIsVisible(true);
+            });
+          }
 
           // Once the element is visible, we can stop observing it
           if (ref.current) {
-            observer.unobserve(ref.current);
+            observerRef.current?.unobserve(ref.current);
           }
         }
       },
@@ -44,20 +62,26 @@ export const useScrollAnimation = ({
       }
     );
 
+    return observerRef.current;
+  }, [threshold, rootMargin, delay]);
+
+  useEffect(() => {
+    const observer = setupObserver();
     const currentRef = ref.current;
+
     if (currentRef) {
       observer.observe(currentRef);
     }
 
     return () => {
-      if (currentRef) {
+      if (currentRef && observer) {
         observer.unobserve(currentRef);
       }
     };
-  }, [threshold, rootMargin, delay]);
+  }, [setupObserver]);
 
-  // Generate CSS classes based on direction and timing
-  const getAnimationClass = () => {
+  // Memoize animation classes based on options to prevent recalculations
+  const getAnimationClass = useMemo(() => {
     const timingClass =
       timing === "fast"
         ? "duration-500"
@@ -92,11 +116,16 @@ export const useScrollAnimation = ({
     }
 
     return `transform translate-y-0 translate-x-0 opacity-100 ${timingClass}`;
-  };
+  }, [isVisible, direction, timing]);
+
+  // Memoize the final style string
+  const style = useMemo(() => {
+    return `transition-all ease-out ${getAnimationClass}`;
+  }, [getAnimationClass]);
 
   return {
     ref,
-    style: `transition-all ease-out ${getAnimationClass()}`,
+    style,
     isVisible,
   };
 };
