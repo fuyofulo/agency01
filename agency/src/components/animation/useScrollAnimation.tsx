@@ -67,7 +67,7 @@ export const useScrollAnimation = ({
 
     if (!isVisible) {
       let translateClass = "";
-      let opacityClass = "opacity-0";
+      const opacityClass = "opacity-0";
 
       switch (direction) {
         case "up":

@@ -38,7 +38,6 @@ export const AnimateOnScroll = forwardRef<HTMLElement, AnimateOnScrollProps>(
 
     // Combine the animation ref with any forwarded ref
     const combinedRef = (node: HTMLElement) => {
-      // @ts-ignore - TypeScript doesn't like this but it works
       ref.current = node;
       if (typeof forwardedRef === "function") {
         forwardedRef(node);
@@ -49,7 +48,6 @@ export const AnimateOnScroll = forwardRef<HTMLElement, AnimateOnScrollProps>(
 
     return (
       <Component
-        // @ts-ignore - TypeScript doesn't like this either but it works
         ref={combinedRef}
         className={`${className} ${style}`}
         data-animated={isVisible ? "true" : "false"}
