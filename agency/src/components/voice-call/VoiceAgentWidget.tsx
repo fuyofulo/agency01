@@ -14,7 +14,7 @@ export default function VoiceAgentWidget() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className="flex items-center justify-center text-white rounded-full w-12 h-12 shadow-lg transition-all duration-300 hover:scale-105"
-        style={{ backgroundColor: isHovered ? "#A50036" : "#CC0043" }}
+        style={{ backgroundColor: isHovered ? "#A50036" : "#FF0054" }}
         title="Start Voice Call"
       >
         <Mic className="w-6 h-6" />
