@@ -37,7 +37,7 @@ export default function IntelligentAssistantPage() {
   // Text content
   const descriptionText = {
     intro:
-      "Meet your new digital teammate: the Intelligent Chat Assistant from Agency00. This isn't just any chatbot; it's a super-smart, always-on helper that can tackle customer questions, fetch real-time data, and even handle multiple chats at once. Imagine having a customer service rep who never sleeps, never gets tired, and always has the right answer at their fingertips. That's our Chat Assistant.",
+      "Meet your new digital teammate: the Intelligent Chat Assistant from Aloria Labs. This isn't just any chatbot; it's a super-smart, always-on helper that can tackle customer questions, fetch real-time data, and even handle multiple chats at once. Imagine having a customer service rep who never sleeps, never gets tired, and always has the right answer at their fingertips. That's our Chat Assistant.",
     conclusion:
       "Think of it as your business's secret weapon for customer satisfaction. And the best part? It's always learning and improving, so it gets even better over time. Say goodbye to \"please hold\" and hello to instant answers!",
   };

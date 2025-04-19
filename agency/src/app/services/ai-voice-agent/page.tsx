@@ -38,7 +38,7 @@ export default function AIVoiceAgentPage() {
   // Text content
   const descriptionText = {
     intro:
-      "Introducing the Intelligent Voice Assistant from Agency00: your business's new voice of reason. This isn't just a voice bot; it's a conversational maestro that can book appointments, answer queries, and even make outbound calls to potential leads. It's like having a top-notch sales rep and a customer service guru rolled into one, available 24/7—no coffee breaks required.",
+      "Introducing the Intelligent Voice Assistant from Aloria Labs: your business's new voice of reason. This isn't just a voice bot; it's a conversational maestro that can book appointments, answer queries, and even make outbound calls to potential leads. It's like having a top-notch sales rep and a customer service guru rolled into one, available 24/7—no coffee breaks required.",
     conclusion:
       "It's like having a Swiss Army knife for your customer interactions—versatile, reliable, and always ready to help. Whether it's booking a haircut or chasing down leads, this voice assistant speaks your business's language (and your customers' too!).",
   };
