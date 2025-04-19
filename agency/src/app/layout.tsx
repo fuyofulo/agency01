@@ -4,6 +4,7 @@ import Script from "next/script";
 
 import "./globals.css";
 import VoiceAgentWidgetWrapper from "@/components/voice-call/VoiceAgentWidgetWrapper";
+import VoiceCallUIWrapper from "@/components/voice-call/VoiceCallUIWrapper";
 import { CalendlyProvider } from "@/components/providers/CalendlyProvider";
 
 const vt323 = VT323({
@@ -43,6 +44,7 @@ export default function RootLayout({
         <CalendlyProvider>
           {children}
           <VoiceAgentWidgetWrapper />
+          <VoiceCallUIWrapper />
         </CalendlyProvider>
         <Script
           id="voiceflow-chatbot"
