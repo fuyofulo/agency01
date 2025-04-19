@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { useCalendly } from "@/components/providers/CalendlyProvider";
 
 interface NavLink {
   text: string;
@@ -10,6 +11,7 @@ interface NavLink {
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { openCalendlyModal } = useCalendly();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,7 +37,7 @@ export const Navbar = () => {
     { text: "Home", href: "#home" },
     { text: "Services", href: "#services" },
     { text: "Process", href: "#process" },
-    { text: "Testimonials", href: "#testimonials" },
+    // { text: "Testimonials", href: "#testimonials" },
     { text: "Contact", href: "#contact" },
   ];
 
@@ -63,14 +65,12 @@ export const Navbar = () => {
                   {link.text}
                 </a>
               ))}
-              <a
-                href="https://calendly.com/fuyofulo/discovery-call"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={openCalendlyModal}
                 className="bg-rose-900 text-white hover:bg-rose-800 px-4 py-2 rounded-lg text-lg tracking-widest transition-colors duration-300"
               >
                 Book a Call
-              </a>
+              </button>
             </div>
           </div>
 
@@ -106,14 +106,12 @@ export const Navbar = () => {
                 {link.text}
               </a>
             ))}
-            <a
-              href="https://calendly.com/fuyofulo/discovery-call"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-rose-900 text-white hover:bg-rose-800 block px-3 py-2 rounded-lg text-base tracking-widest mt-4"
+            <button
+              onClick={openCalendlyModal}
+              className="bg-rose-900 text-white hover:bg-rose-800 block w-full text-left px-3 py-2 rounded-lg text-base tracking-widest mt-4"
             >
               Book a Call
-            </a>
+            </button>
           </div>
         </div>
       )}

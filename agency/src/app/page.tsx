@@ -13,7 +13,6 @@ export default function Home() {
       <Hero />
       <Services />
       <ProcessFlow />
-      <Testimonials />
       <Contact />
       <VapiUI />
       

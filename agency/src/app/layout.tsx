@@ -4,6 +4,7 @@ import Script from "next/script";
 
 import "./globals.css";
 import VoiceAgentWidgetWrapper from "@/components/voice-call/VoiceAgentWidgetWrapper";
+import { CalendlyProvider } from "@/components/providers/CalendlyProvider";
 
 const vt323 = VT323({
   subsets: ["latin"],
@@ -26,9 +27,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <style>{`
+          /* Fix for Voiceflow chatbot widget positioning */
+          div[data-vfrc="dialog-launcher"] {
+            position: fixed !important;
+            bottom: 1.5rem !important;
+            right: 1.5rem !important;
+            z-index: 40 !important;
+            transform: none !important;
+          }
+        `}</style>
+      </head>
       <body className={vt323.className}>
-        {children}
-        <VoiceAgentWidgetWrapper />
+        <CalendlyProvider>
+          {children}
+          <VoiceAgentWidgetWrapper />
+        </CalendlyProvider>
         <Script
           id="voiceflow-chatbot"
           strategy="afterInteractive"

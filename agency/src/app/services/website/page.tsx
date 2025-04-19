@@ -37,7 +37,7 @@ export default function WebsiteServicePage() {
   // Text content
   const descriptionText = {
     intro:
-      "Looking for a website that's as brilliant as it is beautiful? At Agency00, we craft AI-powered websites that blend cutting-edge intelligence with jaw-dropping design. These aren't your average sites—they come alive with intelligent chat and voice assistants, ready to tackle any visitor question, guide users effortlessly, and elevate your online presence. Think of them as your brand's digital dream team: stylish, smart, and always on the job.",
+      "Looking for a website that's as brilliant as it is beautiful? At Aloria Labs, we craft AI-powered websites that blend cutting-edge intelligence with jaw-dropping design. These aren't your average sites—they come alive with intelligent chat and voice assistants, ready to tackle any visitor question, guide users effortlessly, and elevate your online presence. Think of them as your brand's digital dream team: stylish, smart, and always on the job.",
     conclusion:
       "These websites don't just sit there looking pretty—they engage, assist, and convert. With stunning visuals and smart features, they're your 24/7 digital ambassador, designed to impress and built to perform. Why go basic when you can go brilliant? Let Agency00 bring your online presence to life with a website that's equal parts brains and beauty. Ready to chat (or talk) about it? We're all ears!",
   };
