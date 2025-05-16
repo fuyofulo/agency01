@@ -14,7 +14,7 @@ export const Contact = () => {
         </h2>
 
         <p className="text-xl md:text-2xl text-gray-300 mb-12 font-light tracking-wide">
-          Let&apos;s discuss how we can automate your customer support
+          Let&apos;s discuss how we can automate your operations
         </p>
 
         <button

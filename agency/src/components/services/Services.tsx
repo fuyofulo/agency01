@@ -103,7 +103,7 @@ export const Services = () => {
       features: [
         {
           title: "Natural Conversations",
-          description: "Human-like phone interactions with context awareness",
+          description: "Human like phone interactions with context awareness",
         },
         {
           title: "Restaurant Bookings",
@@ -116,23 +116,43 @@ export const Services = () => {
       ],
       buttonUrl: "/services/ai-voice-agent",
     },
+    // {
+    //   title: "AI POWERED WEBSITE",
+    //   features: [
+    //     {
+    //       title: "Custom Design",
+    //       description: "Unique, professional websites tailored to your brand",
+    //     },
+    //     {
+    //       title: "Responsive Development",
+    //       description: "Mobile friendly sites that work on all devices",
+    //     },
+    //     {
+    //       title: "AI Integration",
+    //       description: "Seamless integration with our AI solutions",
+    //     },
+    //   ],
+    //   buttonUrl: "/services/website",
+    // },
     {
-      title: "AI POWERED WEBSITE",
+      title: "AUTOMATED PRECISION OUTREACH",
       features: [
         {
-          title: "Custom Design",
-          description: "Unique, professional websites tailored to your brand",
+          title: "Prospect Identification",
+          description:
+            "Finds perfect-fit prospects matching your ideal customer profile",
         },
         {
-          title: "Responsive Development",
-          description: "Mobile-friendly sites that work on all devices",
+          title: "Background Research",
+          description: "Conducts comprehensive research on each prospect",
         },
         {
-          title: "AI Integration",
-          description: "Seamless integration with our AI solutions",
+          title: "Personalized Emails",
+          description:
+            "Creates tailored messages that get higher response rates",
         },
       ],
-      buttonUrl: "/services/website",
+      buttonUrl: "/services/automated-outreach",
     },
   ];
 

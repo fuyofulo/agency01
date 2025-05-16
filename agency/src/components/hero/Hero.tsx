@@ -149,7 +149,7 @@ export const Hero = () => {
               transition: "transform 0.2s ease-out",
             }}
           >
-            Aloria Labs
+            Elaria Labs
           </h1>
         </AnimateOnScroll>
 
@@ -166,7 +166,7 @@ export const Hero = () => {
               transition: "transform 0.2s ease-out",
             }}
           >
-            Automate Customer Support with AI
+            Automate Operations with AI
           </h2>
         </AnimateOnScroll>
 

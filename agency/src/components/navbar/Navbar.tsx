@@ -107,7 +107,7 @@ export const Navbar = () => {
                 scrolled ? "text-2xl" : "text-3xl"
               } tracking-widest`}
             >
-              Aloria Labs
+              Elaria Labs
             </Link>
           </div>
 

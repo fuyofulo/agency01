@@ -14,8 +14,8 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "Aloria Labs",
-  description: "Aloria Labs",
+  title: "Elaria Labs",
+  description: "Elaria Labs",
   icons: {
     icon: [],
   },

@@ -38,9 +38,9 @@ export default function AIVoiceAgentPage() {
   // Text content
   const descriptionText = {
     intro:
-      "Introducing the Intelligent Voice Assistant from Aloria Labs: your business's new voice of reason. This isn't just a voice bot; it's a conversational maestro that can book appointments, answer queries, and even make outbound calls to potential leads. It's like having a top-notch sales rep and a customer service guru rolled into one, available 24/7—no coffee breaks required.",
+      "Introducing the Intelligent Voice Assistant from Elaria Labs, your business's new voice of reason. This isn't just a voice bot, it's a conversational maestro that can book appointments, answer queries, and even make outbound calls to potential leads. It's like having a top notch sales rep and a customer service guru rolled into one, available 24/7 no coffee breaks required.",
     conclusion:
-      "It's like having a Swiss Army knife for your customer interactions—versatile, reliable, and always ready to help. Whether it's booking a haircut or chasing down leads, this voice assistant speaks your business's language (and your customers' too!).",
+      "It's like having a Swiss Army knife for your customer interactions, versatile, reliable, and always ready to help. Whether it's booking a haircut or chasing down leads, this voice assistant speaks your business's language (and your customers' too!).",
   };
 
   // Capabilities data
@@ -48,17 +48,17 @@ export default function AIVoiceAgentPage() {
     {
       title: "Appointment Booker",
       description:
-        "It can schedule, reschedule, and confirm appointments with a friendly, human-like voice that customers actually enjoy talking to.",
+        "It can schedule, reschedule, and confirm appointments with a friendly, human like voice that customers actually enjoy talking to.",
     },
     {
       title: "Query Resolver",
       description:
-        "From answering FAQs to providing real-time information by fetching data from your backend, it's got your customers covered.",
+        "From answering FAQs to providing real time information by fetching data from your backend, it's got your customers covered.",
     },
     {
       title: "Lead Generator",
       description:
-        "It can make outbound calls to multiple leads simultaneously, boosting your reach and efficiency—because why call one lead when you can call ten?",
+        "It can make outbound calls to multiple leads simultaneously, boosting your reach and efficiency, because why call one lead when you can call ten?",
     },
     {
       title: "Data Collector",
@@ -72,12 +72,12 @@ export default function AIVoiceAgentPage() {
     {
       title: "Appointment-Based Services",
       description:
-        "Perfect for salons, clinics, and consultancies that need to manage bookings efficiently—because double-booking is so last century.",
+        "Perfect for salons, clinics, and consultancies that need to manage bookings efficiently, because double booking is so last century.",
     },
     {
       title: "Sales Teams",
       description:
-        "Automate lead outreach and follow-ups, so your team can focus on closing deals instead of dialing numbers all day.",
+        "Automate lead outreach and follow ups, so your team can focus on closing deals instead of dialing numbers all day.",
     },
     {
       title: "Customer Support",

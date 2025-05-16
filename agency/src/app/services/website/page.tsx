@@ -37,30 +37,30 @@ export default function WebsiteServicePage() {
   // Text content
   const descriptionText = {
     intro:
-      "Looking for a website that's as brilliant as it is beautiful? At Aloria Labs, we craft AI-powered websites that blend cutting-edge intelligence with jaw-dropping design. These aren't your average sites—they come alive with intelligent chat and voice assistants, ready to tackle any visitor question, guide users effortlessly, and elevate your online presence. Think of them as your brand's digital dream team: stylish, smart, and always on the job.",
+      "Looking for a website that's as brilliant as it is beautiful? At Elaria Labs, we craft AI-powered websites that blend cutting edge intelligence with jaw dropping design. These aren't your average sites they come alive with intelligent chat and voice assistants, ready to tackle any visitor question, guide users effortlessly, and elevate your online presence. Think of them as your brand's digital dream team, stylish, smart, and always on the job.",
     conclusion:
-      "These websites don't just sit there looking pretty—they engage, assist, and convert. With stunning visuals and smart features, they're your 24/7 digital ambassador, designed to impress and built to perform. Why go basic when you can go brilliant? Let Aloria Labs bring your online presence to life with a website that's equal parts brains and beauty. Ready to chat (or talk) about it? We're all ears!",
+      "These websites don't just sit there looking pretty they engage, assist, and convert. With stunning visuals and smart features, they're your 24/7 digital ambassador, designed to impress and built to perform. Why go basic when you can go brilliant? Let Elaria Labs bring your online presence to life with a website that's equal parts brains and beauty. Ready to chat (or talk) about it? We're all ears!",
   };
 
   // Features data
   const features = [
     {
-      title: "Exquisite, User-Focused Design",
+      title: "Exquisite, User Focused Design",
       description:
-        "We don't just design websites; we sculpt digital experiences. Expect sleek, modern aesthetics, intuitive layouts, and a polished finish that reflects your brand's unique flair. It's like giving your business a front-row seat in the online world.",
+        "We don't just design websites, we sculpt digital experiences. Expect sleek, modern aesthetics, intuitive layouts, and a polished finish that reflects your brand's unique flair. It's like giving your business a front row seat in the online world.",
     },
     {
       title: "Chat That Thinks",
       description:
-        "Our integrated chat assistant isn't just a bot—it's a conversational wizard. Need to answer FAQs, recommend products, or assist with navigation? It's got you covered, delivering instant responses with a personal touch.",
+        "Our integrated chat assistant isn't just a bot it's a conversational wizard. Need to answer FAQs, recommend products, or assist with navigation? It's got you covered, delivering instant responses with a personal touch.",
     },
     {
       title: "Voice That Listens",
       description:
-        "Prefer hands-free? Our voice assistant steps in like a trusty sidekick, responding to spoken queries, booking appointments, or pulling up info—all with a friendly vibe your users will love.",
+        "Prefer hands free? Our voice assistant steps in like a trusty sidekick, responding to spoken queries, booking appointments, or pulling up info all with a friendly vibe your users will love.",
     },
     {
-      title: "Round-the-Clock Service",
+      title: "Round the Clock Service",
       description:
         "Day or night, your website's AI crew is awake and ready. Customers get instant support whenever they need it, no coffee breaks required.",
     },
@@ -76,7 +76,7 @@ export default function WebsiteServicePage() {
     {
       title: "Service Pros",
       description:
-        "From plumbers to consultants, let our voice assistant handle bookings or FAQs like 'What's your cancellation policy?'—so you can focus on delivering top-notch service.",
+        "From plumbers to consultants, let our voice assistant handle bookings or FAQs like 'What's your cancellation policy?' so you can focus on delivering top notch service.",
     },
     {
       title: "Content Hubs",
