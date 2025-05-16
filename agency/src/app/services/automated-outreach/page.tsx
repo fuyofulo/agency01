@@ -119,17 +119,9 @@ export default function AutomatedOutreachPage() {
           </div>
         </div>
 
-        {/* Demo Button */}
-        <div className="flex justify-center mb-12">
-          <button className="bg-rose-900 hover:bg-rose-800 transition text-white px-8 py-4 rounded-lg flex items-center gap-3 text-lg tracking-wider">
-            <Mail className="w-5 h-5" />
-            Request Demo
-          </button>
-        </div>
-
         {/* Process Section */}
         <h2 className="text-3xl text-rose-500 mb-6 tracking-widest">
-          Our 4-Step Outreach Process
+          How does it work?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 tracking-wider">
           {processSteps.map((step, index) => (

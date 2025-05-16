@@ -85,7 +85,16 @@ export const Hero = () => {
       label: "AI Voice Agent",
       href: "/services/ai-voice-agent",
     },
-    { icon: Code, label: "AI Powered Website", href: "/services/website" },
+    // {
+    //   icon: Code,
+    //   label: "AI Powered Website",
+    //   href: "/services/website",
+    // },
+    {
+      icon: PhoneCall,
+      label: "Automated Outreach",
+      href: "/services/automated-outreach",
+    },
   ];
 
   // Add a particle effect background
