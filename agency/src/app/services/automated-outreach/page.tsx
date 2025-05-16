@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Mail } from "lucide-react";
+import { Check } from "lucide-react";
 
 interface ProcessStepCardProps {
   number: string;

@@ -1,5 +1,5 @@
 "use client";
-import { Bot, Code, PhoneCall, LucideIcon } from "lucide-react";
+import { Bot, PhoneCall, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimateOnScroll } from "../animation/AnimateOnScroll";
